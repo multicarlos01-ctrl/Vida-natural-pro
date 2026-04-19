@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Vida Natural | Sua Jornada Saudável</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 10% 20%, #0a0f0e 0%, #030605 100%);
+      color: #eef4ff;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .dashboard {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      background: rgba(18, 25, 22, 0.7);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      border-radius: 2.5rem;
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+    }
+
+    .logo-area h1 {
+      font-size: 1.9rem;
+      background: linear-gradient(135deg, #c0ffb0, #00ffaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-area p {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .stats-rapidas {
+      display: flex;
+      gap: 1.5rem;
+      background: #0e1412;
+      padding: 0.5rem 1.2rem;
+      border-radius: 3rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat .valor {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #9effcf;
+    }
+
+    .stat .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: rgba(20, 28, 25, 0.75);
+      backdrop-filter: blur(6px);
+      border-radius: 2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(0, 255, 150, 0.2);
+      transition: all 0.25s ease;
+      box-shadow: 0 12px 28px -8px rgba(0,0,0,0.4);
+    }
+
+    .card:hover {
+      border-color: #2aff9e;
+      transform: translateY(-3px);
+      background: rgba(28, 38, 34, 0.85);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid #2aff9e;
+      padding-left: 12px;
+    }
+
+    .progress-container {
+      margin: 15px 0;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .progress-bg {
+      background: #2a332f;
+      border-radius: 40px;
+      height: 12px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, #6effb0, #00cc77);
+      width: 0%;
+      height: 100%;
+      border-radius: 40px;
+      transition: width 0.3s ease;
+    }
+
+    button {
+      background: #1e2c26;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 2rem;
+      font-weight: 600;
+      color: #eef5f0;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 12px;
+      margin-right: 10px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(4px);
+      border: 0.5px solid #2aff9e40;
+    }
+
+    button:hover {
+      background: #2aff9e;
+      color: #0a1f17;
+      transform: scale(0.97);
+      box-shadow: 0 0 10px #2aff9e80;
+    }
+
+    /* ===== BOTÃO DO MERCADO PAGO COM PULSAÇÃO ===== */
+    .btn-doacao-wrapper {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    .btn-doacao {
+      background: linear-gradient(135deg, #ff8c00, #ff5e00);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(255, 94, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 1px;
+      animation: pulse 1.8s infinite;
+    }
+
+    .btn-doacao:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #ff9f2c, #ff6a00);
+      box-shadow: 0 0 25px rgba(255, 94, 0, 0.9);
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 94, 0, 0.7);
+      }
+      70% {
+        transform: scale(1.03);
+        box-shadow: 0 0 0 12px rgba(255, 94, 0, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 94, 0, 0);
+      }
+    }
+
+    .badge-nivel {
+      background: #00cc8840;
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .ingredientes, .modo {
+      background: #0e1613;
+      padding: 8px 12px;
+      border-radius: 20px;
+      margin: 8px 0;
+      font-size: 0.9rem;
+    }
+
+    iframe {
+      border-radius: 1.5rem;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid #2aff9e30;
+      background: #00000030;
+    }
+
+    .plano-semanal {
+      background: #0e1411;
+      border-radius: 1.2rem;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      white-space: pre-line;
+      text-align: left;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .btn-doacao {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="dashboard">
+  <div class="hero">
+    <div class="logo-area">
+      <h1>🥗 Vida Natural</h1>
+      <p>sua jornada sustentável de bem-estar</p>
+    </div>
+    <div class="stats-rapidas">
+      <div class="stat">
+        <div class="valor" id="diasCount">0</div>
+        <div class="label">dias saudáveis</div>
+      </div>
+      <div class="stat">
+        <div class="valor" id="receitasFeitasCount">0</div>
+        <div class="label">receitas feitas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2col">
+    <div class="card">
+      <h2>🏆 Evolução Diária</h2>
+      <div class="progress-container">
+        <div class="progress-label">
+          <span id="nivelTexto">Nível 1 🌱</span>
+          <span id="xpAtual">0 XP</span>
+        </div>
+        <div class="progress-bg">
+          <div class="progress-fill" id="barraProgresso"></div>
+        </div>
+        <div class="badge-nivel" id="proximoNivelHint">+10 XP para próximo nível</div>
+      </div>
+      <div class="btn-group">
+        <button id="btnGanharXP">✨ +10 Pontos (hábito)</button>
+        <button id="btnResetXP" style="background:#2a1c1c; border-color:#ff7a5c;">⟳ Resetar Jornada</button>
+      </div>
+      <p style="font-size: 0.75rem; margin-top: 12px;">✨ Complete ações, ganhe XP e suba de nível!</p>
+    </div>
+
+    <div class="card">
+      <h2>💡 Dica do Dia</h2>
+      <p id="dicaTexto" style="font-size: 1.2rem; font-weight: 500; margin: 10px 0; line-height: 1.4;">💧 Beba água ao acordar</p>
+      <div class="btn-group">
+        <button id="btnNovaDica">🔄 Nova Dica</button>
+        <button id="btnAplicarDica">✔ Aplicar dica (+5 XP)</button>
+      </div>
+      <p style="font-size:0.7rem; margin-top:12px; opacity:0.7;">📅 Dica única para hoje (muda automaticamente amanhã)</p>
+    </div>
+  </div>
+
+  <div class="grid-2col">
+    <div class="card">
+      <h2>🍲 Receita do Dia</h2>
+      <div id="receitaContainer">
+        <h3 id="nomeReceita" style="font-size: 1.7rem; margin-bottom: 0.5rem;">Vitamina Verde</h3>
+        <div class="ingredientes">🥬 Ingredientes: Couve, limão, maçã, gengibre</div>
+        <div class="modo">🥣 Modo: Bata tudo no liquidificador com água gelada</div>
+      </div>
+      <div class="btn-group">
+        <button id="btnNovaReceita">📖 Próxima Receita</button>
+        <button id="btnFizReceita">✔ Fiz essa receita (+10 XP)</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🥗 Plano Alimentar</h2>
+      <div class="plano-semanal" id="planoAlimentacao"></div>
+      <button id="btnTrocarPlano">🔄 Plano Alternativo</button>
+    </div>
+  </div>
+
+  <!-- CARD DO VÍDEO + BOTÃO MERCADO PAGO COM PULSAÇÃO (LINK ATUALIZADO) -->
+  <div class="card">
+    <h2>🎥 Aula da Semana • Alimentação Consciente</h2>
+    <iframe id="videoIframe" src="https://www.youtube.com/embed/3ZzJ8v_fc1s?si=zmM2W_wX62wB-nbp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="btn-group" style="justify-content: center; flex-wrap: wrap;">
+      <button id="btnTrocarVideo">🎬 Nova Aula Inspiradora</button>
+      
+      <!-- BOTÃO MERCADO PAGO - LINK ATUALIZADO: https://mpago.la/1VsHL4n -->
+      <a href="https://mpago.la/1VsHL4n" target="_blank" rel="noopener noreferrer" class="btn-doacao-wrapper">
+        <button class="btn-doacao">
+          💚 APOIAR PROJETO VIDA NATURAL 💚
+        </button>
+      </a>
+    </div>
+    <p style="font-size: 0.75rem; text-align:center; margin-top:8px;">✨ Sua contribuição no Mercado Pago mantém este projeto vivo e gratuito ✨</p>
+  </div>
+  
+  <footer>🌱 Vida Natural — pequenas escolhas, grandes transformações. Seu progresso fica salvo no navegador. Dica renovada automaticamente a cada dia.</footer>
+</div>
+
+<script>
+  // ================= SISTEMA DE XP =================
+  let xp = localStorage.getItem("vidaNatural_xp") ? parseInt(localStorage.getItem("vidaNatural_xp")) : 0;
+  let diasSaudaveis = localStorage.getItem("diasSaudaveis") ? parseInt(localStorage.getItem("diasSaudaveis")) : 0;
+  let receitasFeitasTotal = localStorage.getItem("receitasFeitas") ? parseInt(localStorage.getItem("receitasFeitas")) : 0;
+
+  const nivelTexto = document.getElementById("nivelTexto");
+  const xpAtualSpan = document.getElementById("xpAtual");
+  const barraProgresso = document.getElementById("barraProgresso");
+  const proximoHint = document.getElementById("proximoNivelHint");
+  const diasCountSpan = document.getElementById("diasCount");
+  const receitasFeitasSpan = document.getElementById("receitasFeitasCount");
+
+  function atualizarInterfaceXP() {
+    let nivel = Math.floor(xp / 100) + 1;
+    let xpNoNivel = xp % 100;
+    let progressoPercent = (xpNoNivel / 100) * 100;
+    barraProgresso.style.width = `${progressoPercent}%`;
+    xpAtualSpan.innerText = `${xp} XP`;
+    let emojiNivel = nivel === 1 ? "🌱" : nivel === 2 ? "🍃" : nivel === 3 ? "🌿" : nivel === 4 ? "🍀" : "🌟";
+    nivelTexto.innerText = `Nível ${nivel} ${emojiNivel}`;
+    let xpParaProximo = 100 - xpNoNivel;
+    if (xpParaProximo <= 0) xpParaProximo = 0;
+    proximoHint.innerText = xpParaProximo === 0 ? "🏅 Máximo! Continue evoluindo" : `✨ +${xpParaProximo} XP para próximo nível`;
+    diasCountSpan.innerText = diasSaudaveis;
+    receitasFeitasSpan.innerText = receitasFeitasTotal;
+  }
+
+  function adicionarXP(valor) {
+    xp += valor;
+    let nivelAntigo = Math.floor((xp - valor) / 100) + 1;
+    localStorage.setItem("vidaNatural_xp", xp);
+    atualizarInterfaceXP();
+    let nivelNovo = Math.floor(xp / 100) + 1;
+    if (nivelNovo > nivelAntigo) {
+      const toast = document.createElement("div");
+      toast.innerText = `🎉 UP! Você atingiu o nível ${nivelNovo} 🎉`;
+      toast.style.position = "fixed";
+      toast.style.bottom = "20px";
+      toast.style.left = "20px";
+      toast.style.backgroundColor = "#2aff9e";
+      toast.style.color = "#0a1f17";
+      toast.style.padding = "12px 20px";
+      toast.style.borderRadius = "40px";
+      toast.style.fontWeight = "bold";
+      toast.style.zIndex = "999";
+      toast.style.boxShadow = "0 0 20px #2aff9e";
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2500);
+    }
+  }
+
+  function adicionarDiaSaudavel() {
+    diasSaudaveis++;
+    localStorage.setItem("diasSaudaveis", diasSaudaveis);
+    diasCountSpan.innerText = diasSaudaveis;
+  }
+
+  function registrarReceitaFeita() {
+    receitasFeitasTotal++;
+    localStorage.setItem("receitasFeitas", receitasFeitasTotal);
+    receitasFeitasSpan.innerText = receitasFeitasTotal;
+  }
+
+  // ================= DICAS COM TROCA DIÁRIA =================
+  const dicasPremium = [
+    "💧 Comece o dia bebendo 500ml de água morna com limão.",
+    "🥑 Adicione gorduras boas (abacate, azeite, castanhas) no almoço.",
+    "🚫 Evite açúcar refinado por 24h e sinta a diferença.",
+    "🍽 Mastigue devagar e coma sem telas — melhora a digestão.",
+    "🥗 Monte metade do prato com vegetais coloridos.",
+    "🌙 Durma 7-8h: noites reparadoras regulam a fome.",
+    "🏃 10 min de caminhada pós-refeição reduz picos glicêmicos.",
+    "🧘 Respire fundo antes das refeições: ativa o sistema parassimpático.",
+    "🍌 Troque sobremesa industrializada por uma fruta com canela.",
+    "🥄 Use temperos naturais (alho, cúrcuma, orégano) em vez de industrializados."
+  ];
+
+  function obterDicaPorData() {
+    const hoje = new Date();
+    const seed = hoje.getFullYear() * 365 + hoje.getMonth() * 31 + hoje.getDate();
+    return dicasPremium[seed % dicasPremium.length];
+  }
+
+  let dicaAtual = "";
+  function atualizarDica(texto) {
+    document.getElementById("dicaTexto").innerText = texto;
+    dicaAtual = texto;
+  }
+
+  function carregarDicaDiaria() {
+    atualizarDica(obterDicaPorData());
+  }
+
+  function novaDicaRandom() {
+    atualizarDica(dicasPremium[Math.floor(Math.random() * dicasPremium.length)]);
+  }
+
+  // ================= RECEITAS =================
+  const receitasPremium = [
+    { nome: "🥑 Smoothie Detox", ingredientes: "1 couve, 1 maçã verde, suco de limão, gengibre, 200ml água de coco", modo: "Bata todos os ingredientes no liquidificador até homogêneo." },
+    { nome: "🍳 Omelete de Espinafre", ingredientes: "2 ovos, espinafre, tomate cereja, orégano", modo: "Bata os ovos, refogue espinafre, adicione ovos e tomate." },
+    { nome: "🥗 Salada Anti-inflamatória", ingredientes: "Rúcula, cenoura, sementes de girassol, cúrcuma, limão", modo: "Misture tudo e tempere com azeite e limão." },
+    { nome: "🍌 Panqueca Fit de Banana", ingredientes: "1 banana, 2 ovos, 3 colheres aveia, canela", modo: "Misture e frite em frigideira antiaderente." },
+    { nome: "🍠 Batata Doce Recheada", ingredientes: "batata doce, frango desfiado, iogurte natural", modo: "Asse a batata, amasse e recheie com frango." }
+  ];
+  let receitaAtual = receitasPremium[0];
+
+  function renderizarReceita(receita) {
+    document.getElementById("nomeReceita").innerHTML = receita.nome;
+    document.querySelector(".ingredientes").innerHTML = `🥕 Ingredientes: ${receita.ingredientes}`;
+    document.querySelector(".modo").innerHTML = `🍳 Modo: ${receita.modo}`;
+  }
+
+  function novaReceitaRandom() {
+    receitaAtual = receitasPremium[Math.floor(Math.random() * receitasPremium.length)];
+    renderizarReceita(receitaAtual);
+  }
+
+  // =============== PLANO SEMANAL ================
+  const planoSemanal1 = `🍽️ SEG: Frango grelhado + quinoa + brócolis
+🔥 TER: Peixe assado + batata doce + abobrinha
+🌿 QUA: Omelete de legumes + salada verde
+💪 QUI: Carne magra + arroz integral + feijão
+🥑 SEX: Atum com abacate + mix de folhas
+🌯 SÁB: Wrap integral com frango
+🍃 DOM: Sopa detox de abóbora`;
+
+  const planoSemanal2 = `🌞 SEG: Bowl de grão-de-bico + homus
+🌱 TER: Tofu grelhado + legumes
+🍠 QUA: Purê de batata doce + filé de frango
+🥗 QUI: Salada completa de lentilha
+🍲 SEX: Sopa de legumes com frango
+🥘 SÁB: Arroz de couve-flor com camarão
+🧘 DOM: Smoothie bowl + frutas`;
+
+  let planoAtivo = 1;
+  const planoDiv = document.getElementById("planoAlimentacao");
+  function atualizarPlano() {
+    planoDiv.innerText = planoAtivo === 1 ? planoSemanal1 : planoSemanal2;
+  }
+  function alternarPlano() { planoAtivo = planoAtivo === 1 ? 2 : 1; atualizarPlano(); }
+
+  // ================= VÍDEO =================
+  const videos = [
+    "https://www.youtube.com/embed/3ZzJ8v_fc1s",
+    "https://www.youtube.com/embed/UE1hQnXhF40",
+    "https://www.youtube.com/embed/urNbg1jLhDg"
+  ];
+  let videoIndex = 0;
+  const iframeVideo = document.getElementById("videoIframe");
+  function trocarVideo() { videoIndex = (videoIndex + 1) % videos.length; iframeVideo.src = videos[videoIndex]; }
+
+  // =============== EVENTOS ===============
+  function ganharXPAcao(valor) {
+    adicionarXP(valor);
+    const feedback = document.createElement("div");
+    feedback.innerText = `+${valor} XP! 🌟`;
+    feedback.style.cssText = "position:fixed; bottom:70px; right:20px; background:#2aff9e; color:#000; padding:8px 16px; border-radius:30px; font-weight:bold; z-index:1000;";
+    document.body.appendChild(feedback);
+    setTimeout(() => feedback.remove(), 1500);
+  }
+
+  document.getElementById("btnGanharXP").addEventListener("click", () => ganharXPAcao(10));
+  document.getElementById("btnResetXP").addEventListener("click", () => {
+    if (confirm("⚠️ Resetar jornada?")) {
+      xp = 0; diasSaudaveis = 0; receitasFeitasTotal = 0;
+      localStorage.setItem("vidaNatural_xp", xp);
+      localStorage.setItem("diasSaudaveis", diasSaudaveis);
+      localStorage.setItem("receitasFeitas", receitasFeitasTotal);
+      atualizarInterfaceXP();
+      alert("🔄 Jornada reiniciada!");
+    }
+  });
+  document.getElementById("btnNovaDica").addEventListener("click", () => novaDicaRandom());
+  document.getElementById("btnAplicarDica").addEventListener("click", () => {
+    ganharXPAcao(5);
+    adicionarDiaSaudavel();
+    alert(`💚 Você aplicou: "${dicaAtual}"\n+5 XP e +1 dia saudável!`);
+  });
+  document.getElementById("btnNovaReceita").addEventListener("click", () => novaReceitaRandom());
+  document.getElementById("btnFizReceita").addEventListener("click", () => {
+    ganharXPAcao(10);
+    registrarReceitaFeita();
+    adicionarDiaSaudavel();
+    alert(`🍲 Você preparou "${receitaAtual.nome}"\n+10 XP e +1 receita!`);
+  });
+  document.getElementById("btnTrocarPlano").addEventListener("click", () => { alternarPlano(); ganharXPAcao(2); });
+  document.getElementById("btnTrocarVideo").addEventListener("click", () => { trocarVideo(); ganharXPAcao(3); });
+
+  // INICIAR
+  function init() {
+    atualizarInterfaceXP();
+    carregarDicaDiaria();
+    novaReceitaRandom();
+    atualizarPlano();
+    iframeVideo.src = videos[0];
+  }
+  init();
+</script>
+</body>
+</html>
