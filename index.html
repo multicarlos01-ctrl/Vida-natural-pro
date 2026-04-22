@@ -15,16 +15,94 @@
     body {
       background: radial-gradient(circle at 10% 20%, #0a0f0e 0%, #030605 100%);
       color: #eef4ff;
-      padding: 1.5rem 1rem 3rem;
+      padding: 0.5rem 1rem 3rem; /* Ajustado para o banner */
       min-height: 100vh;
     }
 
+    /* ESTILO DO BANNER DE ANÚNCIO */
+    .ad-top-banner {
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(90deg, #121a17, #1a2621);
+      border: 1px solid rgba(0, 255, 150, 0.15);
+      border-radius: 1rem;
+      height: 70px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .ad-slider {
+      display: flex;
+      width: 200%; /* Dois anúncios */
+      height: 100%;
+      animation: slideAds 10s infinite ease-in-out;
+    }
+
+    .ad-item {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      text-decoration: none;
+      color: white;
+    }
+
+    .ad-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ad-icon {
+      width: 40px;
+      height: 40px;
+      background: #2aff9e;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #000;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .ad-text h4 {
+      font-size: 0.9rem;
+      color: #2aff9e;
+    }
+
+    .ad-text p {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    .ad-btn {
+      background: #2aff9e;
+      color: #000;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    @keyframes slideAds {
+      0%, 45% { transform: translateX(0); }
+      50%, 95% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* RESTANTE DO SEU CSS ORIGINAL */
     .container {
       max-width: 1300px;
       margin: 0 auto;
     }
 
-    /* Telas */
     .screen {
       display: none;
       animation: fadeIn 0.3s ease;
@@ -38,7 +116,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cards e componentes */
     .card {
       background: rgba(20, 28, 25, 0.85);
       backdrop-filter: blur(8px);
@@ -96,7 +173,6 @@
       font-size: 1rem;
     }
 
-    /* Barra de progresso de peso */
     .progress-peso {
       background: #2a332f;
       border-radius: 30px;
@@ -119,7 +195,6 @@
       font-size: 0.75rem;
     }
 
-    /* Navegação inferior */
     .nav {
       position: fixed;
       bottom: 0;
@@ -176,8 +251,32 @@
 </head>
 <body>
 
+<div class="ad-top-banner">
+  <div class="ad-slider">
+    <a href="https://meli.la/1HuxU5v" target="_blank" class="ad-item">
+      <div class="ad-content">
+        <div class="ad-icon">ML</div>
+        <div class="ad-text">
+          <h4>Mercado Livre</h4>
+          <p>Ofertas exclusivas hoje!</p>
+        </div>
+      </div>
+      <div class="ad-btn">ABRIR</div>
+    </a>
+    <a href="https://collshp.com/carlosalbetomoura15?view=storefront" target="_blank" class="ad-item">
+      <div class="ad-content">
+        <div class="ad-icon">🍺</div>
+        <div class="ad-text">
+          <h4>Chopp Especial</h4>
+          <p>Confira nossa vitrine</p>
+        </div>
+      </div>
+      <div class="ad-btn">VER LOJA</div>
+    </a>
+  </div>
+</div>
+
 <div class="container">
-  <!-- TELA DE INICIAR / ONBOARDING COMPLETO -->
   <div id="telaBoasVindas" class="screen active">
     <div class="card" style="text-align: center;">
       <h1>🌱 Vida Natural + Fit</h1>
@@ -186,7 +285,6 @@
     </div>
   </div>
 
-  <!-- TELA DE QUESTIONÁRIO -->
   <div id="telaQuestionario" class="screen">
     <div class="card">
       <h2>📋 Vamos te conhecer melhor</h2>
@@ -220,11 +318,9 @@
     </div>
   </div>
 
-  <!-- APP PRINCIPAL -->
   <div id="telaHome" class="screen">
     <h2>🥗 Vida Natural + Fit</h2>
     
-    <!-- Barra de progresso de perda de peso -->
     <div class="card">
       <h3>📊 Seu Progresso de Peso</h3>
       <div class="progress-peso">
@@ -234,21 +330,18 @@
       <p>🏆 <span id="xpTotalDisplay">0 XP</span> acumulados</p>
     </div>
 
-    <!-- Dica do dia -->
     <div class="card">
       <h3>💡 Dica do Dia</h3>
       <p id="dicaDiaTexto" style="font-size: 1.2rem;">💧 Beba água ao acordar</p>
       <button id="btnNovaDicaHome">🔄 Nova Dica</button>
     </div>
 
-    <!-- Status rápido -->
     <div class="grid-2">
       <div class="card"><h3>🍽️ Receitas feitas</h3><p id="receitasFeitasHome">0</p></div>
       <div class="card"><h3>💪 Treinos realizados</h3><p id="treinosFeitosHome">0</p></div>
     </div>
   </div>
 
-  <!-- TELA RECEITAS -->
   <div id="telaReceitas" class="screen">
     <h2>🍲 Receitas Saudáveis</h2>
     <div id="receitasContainer"></div>
@@ -256,7 +349,6 @@
     <button id="btnFizReceitaPrincipal">✔ Fiz essa receita (+10 XP)</button>
   </div>
 
-  <!-- TELA EXERCÍCIOS -->
   <div id="telaExercicios" class="screen">
     <h2>💪 Treinos para Emagrecer</h2>
     <div class="card">
@@ -271,7 +363,6 @@
     </div>
   </div>
 
-  <!-- TELA CHAT IA -->
   <div id="telaChat" class="screen">
     <h2>🤖 Assistente IA Personalizado</h2>
     <div class="chat-box" id="chatBox"></div>
@@ -279,7 +370,6 @@
     <button id="btnEnviarChat">Enviar pergunta</button>
   </div>
 
-  <!-- BOTÃO APOIO -->
   <div class="card" style="text-align: center;">
     <a href="https://mpago.la/1VsHL4n" target="_blank" style="text-decoration: none;">
       <button class="btn-doacao" style="width: 100%;">💚 APOIAR PROJETO VIDA NATURAL 💚</button>
@@ -289,7 +379,6 @@
   <footer>🌱 Vida Natural + Fit — alimentação, treinos e IA. Seus dados ficam salvos no navegador.</footer>
 </div>
 
-<!-- MENU INFERIOR -->
 <div class="nav" id="menuNav" style="display: none;">
   <button onclick="trocarTelaApp('home')">🏠 Home</button>
   <button onclick="trocarTelaApp('receitas')">🍲 Receitas</button>
@@ -298,7 +387,7 @@
 </div>
 
 <script>
-  // ================= DADOS DO USUÁRIO =================
+  // MANTIDA TODA A LÓGICA ORIGINAL
   let perfil = {
     objetivo: "emagrecer",
     pesoAtual: 0,
@@ -311,7 +400,6 @@
   let receitasFeitas = 0;
   let treinosFeitos = 0;
 
-  // Carregar dados salvos
   function carregarDados() {
     const saved = localStorage.getItem("vidaNaturalPerfil");
     if (saved) {
@@ -340,7 +428,6 @@
   function atualizarBarraPeso() {
     if (perfil.pesoAtual > 0 && perfil.pesoDesejado > 0 && perfil.pesoAtual > perfil.pesoDesejado) {
       let totalPerder = perfil.pesoAtual - perfil.pesoDesejado;
-      let perdido = 0; // simulamos que começou agora
       let percentual = 0;
       document.getElementById("barraPesoFill").style.width = percentual + "%";
       document.getElementById("barraPesoFill").innerText = percentual + "%";
@@ -374,7 +461,6 @@
     setTimeout(() => toast.remove(), 2000);
   }
 
-  // ================= DICAS DIÁRIAS =================
   const dicas = ["💧 Beba 2L de água por dia", "🥗 Coma salada antes do prato principal", "🚫 Evite açúcar após as 18h", "🍽️ Mastigue devagar", "🌙 Durma 7-8h", "🏃 Suba escadas", "🥑 Adicione abacate às refeições"];
   function dicaDoDia() {
     let dia = new Date().getDay();
@@ -385,7 +471,6 @@
     document.getElementById("dicaDiaTexto").innerText = dicas[random];
   }
 
-  // ================= RECEITAS =================
   const receitas = [
     { nome: "🥑 Smoothie Detox", ingredientes: "Couve, maçã, gengibre, água de coco", modo: "Bata tudo no liquidificador." },
     { nome: "🍳 Omelete Fit", ingredientes: "2 ovos, espinafre, tomate", modo: "Bata e refogue." },
@@ -413,11 +498,7 @@
     alert(`🍲 Ótimo! Você preparou ${receitaAtual.nome}`);
   }
 
-  // ================= EXERCÍCIOS =================
-  const videos = [
-
-     "https://www.youtube.com/embed/FVlmo3uS3WQ"
-  ];
+  const videos = ["https://www.youtube.com/embed/FVlmo3uS3WQ"];
   let videoIndex = 0;
   function trocarVideo() { videoIndex = (videoIndex + 1) % videos.length; document.getElementById("videoExercicio").src = videos[videoIndex]; }
   function fazerTreino() { adicionarXP(10, "treino concluído"); treinosFeitos++; atualizarInterface(); alert("💪 Treino registrado! Continue assim."); }
@@ -425,7 +506,6 @@
   const dicasExercicio = ["🏃 10 min caminhada", "🧘 Alongue 5 min", "💪 Agachamento 3x12", "🚴 Pular corda 5 min"];
   function novaDicaExercicio() { document.getElementById("dicaExercicioTexto").innerText = dicasExercicio[Math.floor(Math.random() * dicasExercicio.length)]; }
 
-  // ================= CHAT IA COM MEMÓRIA =================
   function responderIA(pergunta) {
     const p = pergunta.toLowerCase();
     if (p.includes("peso") || p.includes("emagrecer")) {
@@ -454,7 +534,6 @@
     }, 500);
   }
 
-  // ================= NAVEGAÇÃO =================
   function trocarTelaApp(tela) {
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     document.getElementById(`tela${tela.charAt(0).toUpperCase() + tela.slice(1)}`).classList.add("active");
@@ -463,7 +542,6 @@
   function mostrarMenu() { document.getElementById("menuNav").style.display = "flex"; }
   function esconderMenu() { document.getElementById("menuNav").style.display = "none"; }
 
-  // Fluxo inicial
   document.getElementById("btnIniciar").onclick = () => {
     document.getElementById("telaBoasVindas").classList.remove("active");
     document.getElementById("telaQuestionario").classList.add("active");
@@ -480,7 +558,6 @@
     atualizarBarraPeso();
   };
 
-  // Eventos
   document.getElementById("btnNovaDicaHome").onclick = novaDicaRandom;
   document.getElementById("btnProximaReceita").onclick = proximaReceita;
   document.getElementById("btnFizReceitaPrincipal").onclick = fazerReceita;
