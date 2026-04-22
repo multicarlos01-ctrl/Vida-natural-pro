@@ -3,606 +3,509 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Vida Natural + Fit | Sua Jornada Completa</title>
+  <title>Vida Natural + Fit | Premium Edition</title>
   <style>
+    :root {
+      --primary: #2aff9e;
+      --primary-glow: rgba(42, 255, 158, 0.3);
+      --bg: #050a09;
+      --card-bg: rgba(15, 25, 22, 0.8);
+      --text: #e0f2f1;
+      --grad: linear-gradient(135deg, #2aff9e, #00cc77);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: system-ui, 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at 10% 20%, #0a0f0e 0%, #030605 100%);
-      color: #eef4ff;
-      padding: 1.5rem 1rem 3rem;
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(42, 255, 158, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(0, 204, 119, 0.05) 0%, transparent 50%);
+      color: var(--text);
       min-height: 100vh;
+      padding-bottom: 80px;
     }
 
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
+    /* BANNER DE ANÚNCIO PREMIUM */
+    .ad-top-banner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 10px auto 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 1.2rem;
+      height: 75px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    /* Telas */
-    .screen {
-      display: none;
-      animation: fadeIn 0.3s ease;
+    .ad-slider {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      animation: slideAds 12s infinite cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .screen.active {
-      display: block;
+
+    .ad-item {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      text-decoration: none;
+      color: white;
     }
+
+    .ad-icon {
+      width: 45px;
+      height: 45px;
+      background: var(--grad);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #000;
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .ad-text h4 { font-size: 0.95rem; color: var(--primary); }
+    .ad-text p { font-size: 0.75rem; opacity: 0.7; }
+
+    @keyframes slideAds {
+      0%, 45% { transform: translateX(0); }
+      50%, 95% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* CONTAINER E TELAS */
+    .container { max-width: 600px; margin: 0 auto; padding: 0 15px; }
+
+    .screen { display: none; animation: fadeIn 0.4s ease; }
+    .screen.active { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cards e componentes */
+    /* CARDS ESTILO NEUMORPHIC GLASS */
     .card {
-      background: rgba(20, 28, 25, 0.85);
-      backdrop-filter: blur(8px);
-      border-radius: 2rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border-radius: 1.5rem;
       padding: 1.5rem;
-      border: 1px solid rgba(0, 255, 150, 0.2);
-      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       margin-bottom: 1.2rem;
-    }
-
-    .card:hover {
-      border-color: #2aff9e;
-      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
 
     h1, h2 {
-      background: linear-gradient(135deg, #c0ffb0, #00ffaa);
+      background: var(--grad);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: -1px;
     }
 
-    h2 {
-      font-size: 1.6rem;
-    }
-
+    /* BOTÕES PREMIUM */
     button {
-      background: #1e2c26;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(42, 255, 158, 0.3);
+      padding: 12px 20px;
+      border-radius: 1rem;
       font-weight: 600;
-      color: #eef5f0;
+      color: var(--text);
       cursor: pointer;
-      transition: 0.2s;
-      margin: 5px;
-      border: 0.5px solid #2aff9e40;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
     button:hover {
-      background: #2aff9e;
-      color: #0a1f17;
-      transform: scale(0.98);
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 20px var(--primary-glow);
+      transform: translateY(-2px);
     }
 
+    .btn-action { background: var(--grad); color: #000; border: none; width: 100%; margin-top: 10px; }
+
+    /* INPUTS */
     input, select {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 1rem;
-      border: 1px solid #2aff9e40;
-      background: #0e1412;
-      color: white;
-      font-size: 1rem;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.2);
+      color: #fff;
     }
 
-    /* Barra de progresso de peso */
+    /* BARRA DE PROGRESSO */
     .progress-peso {
-      background: #2a332f;
-      border-radius: 30px;
-      height: 24px;
-      overflow: hidden;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50px;
+      height: 12px;
       margin: 15px 0;
+      overflow: hidden;
     }
     .progress-peso-fill {
-      background: linear-gradient(90deg, #6effb0, #00cc77);
-      width: 0%;
+      background: var(--grad);
       height: 100%;
-      border-radius: 30px;
-      transition: width 0.5s ease;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 10px;
-      color: #000;
-      font-weight: bold;
-      font-size: 0.75rem;
+      width: 0%;
+      transition: width 1s ease;
+      box-shadow: 0 0 10px var(--primary);
     }
 
-    /* BANNERS DE ANÚNCIO SEPARADOS (CADA LINK NO SEU BOTÃO) */
-    .banner-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+    /* DETALHE RECEITA */
+    .recipe-header {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
     }
-    .banner-anuncio {
-      background: linear-gradient(135deg, #1a2a25, #0f1915);
-      border-radius: 1.5rem;
-      padding: 1rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 140, 0, 0.5);
-      animation: bannerPulse 2s infinite;
-      text-decoration: none;
-      display: block;
-    }
-    .banner-anuncio:hover {
-      transform: scale(1.02);
-      border-color: #ff8c00;
-      box-shadow: 0 0 20px rgba(255, 140, 0, 0.3);
-      animation: none;
-    }
-    @keyframes bannerPulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.4); border-color: rgba(255, 140, 0, 0.5); }
-      70% { box-shadow: 0 0 0 8px rgba(255, 140, 0, 0); border-color: #ff8c00; }
-      100% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0); border-color: rgba(255, 140, 0, 0.5); }
-    }
-    .banner-icone {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    .banner-titulo {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #ffaa44;
-    }
-    .banner-descricao {
+
+    .recipe-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      padding: 4px 12px;
+      border-radius: 20px;
       font-size: 0.7rem;
-      opacity: 0.8;
-      margin-top: 0.3rem;
+      color: var(--primary);
+      border: 1px solid var(--primary);
     }
 
-    /* Navegação inferior */
-    .nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(10, 15, 12, 0.95);
-      backdrop-filter: blur(12px);
+    .recipe-meta {
       display: flex;
       justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid #2aff9e30;
-      z-index: 100;
-    }
-    .nav button {
-      background: transparent;
-      margin: 0;
-      width: auto;
+      background: rgba(255,255,255,0.03);
+      padding: 10px;
+      border-radius: 12px;
+      margin: 10px 0;
       font-size: 0.8rem;
     }
 
-    .btn-doacao {
-      background: linear-gradient(135deg, #ff8c00, #ff5e00);
-      animation: pulse 1.8s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 94, 0, 0.7); }
-      70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 94, 0, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 94, 0, 0); }
-    }
-
-    /* RECEITAS - ESTILO MAIS PROFISSIONAL */
-    .receita-card {
-      background: linear-gradient(135deg, rgba(30, 45, 40, 0.9), rgba(20, 30, 25, 0.95));
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      border-left: 4px solid #2aff9e;
-    }
-    .receita-nome {
-      font-size: 1.6rem;
-      font-weight: bold;
-      margin-bottom: 0.8rem;
+    .ingredients-list { margin: 15px 0; list-style: none; }
+    .ingredients-list li { 
+      padding: 8px 0; 
+      border-bottom: 1px solid rgba(255,255,255,0.05);
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
       gap: 10px;
     }
-    .receita-ingredientes, .receita-modo {
-      margin: 0.8rem 0;
-      padding: 0.8rem;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 1rem;
-    }
-    .receita-ingredientes strong, .receita-modo strong {
-      color: #2aff9e;
-    }
-    .badge-receita {
-      display: inline-block;
-      background: #2aff9e20;
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-    }
+    .ingredients-list li::before { content: "•"; color: var(--primary); font-weight: bold; }
 
-    .chat-box {
-      background: #0e1412;
-      border-radius: 1rem;
-      height: 300px;
-      overflow-y: auto;
-      padding: 1rem;
-      margin: 1rem 0;
+    /* NAV */
+    .nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(5, 10, 9, 0.9);
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: space-around;
+      padding: 15px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      z-index: 1000;
     }
+    .nav button { background: none; border: none; padding: 5px; font-size: 0.75rem; flex-direction: column; opacity: 0.6; }
+    .nav button.active { opacity: 1; color: var(--primary); }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.7rem;
-      opacity: 0.6;
-      padding-bottom: 70px;
-    }
   </style>
 </head>
 <body>
 
+<div class="ad-top-banner">
+  <div class="ad-slider">
+    <a href="https://meli.la/1HuxU5v" target="_blank" class="ad-item">
+      <div class="ad-content" style="display:flex; align-items:center; gap:15px">
+        <div class="ad-icon">ML</div>
+        <div class="ad-text">
+          <h4>Mercado Livre</h4>
+          <p>Suplementos e Acessórios Fit</p>
+        </div>
+      </div>
+      <div style="background:var(--primary); color:#000; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.8rem">VER</div>
+    </a>
+    <a href="https://collshp.com/carlosalbetomoura15?view=storefront" target="_blank" class="ad-item">
+      <div class="ad-content" style="display:flex; align-items:center; gap:15px">
+        <div class="ad-icon">🛒</div>
+        <div class="ad-text">
+          <h4>Loja Oficial</h4>
+          <p>Confira nossa Vitrine Especial</p>
+        </div>
+      </div>
+      <div style="background:var(--primary); color:#000; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.8rem">LOJA</div>
+    </a>
+  </div>
+</div>
+
 <div class="container">
-  <!-- TELA DE INICIAR / ONBOARDING COMPLETO -->
+  
   <div id="telaBoasVindas" class="screen active">
-    <div class="card" style="text-align: center;">
-      <h1>🌱 Vida Natural + Fit</h1>
-      <p style="margin: 1rem 0;">Sua jornada completa para emagrecer com saúde</p>
-      <button id="btnIniciar" style="background: #2aff9e; color: #000; font-size: 1.2rem; padding: 15px 30px;">🚀 INICIAR JORNADA</button>
+    <div class="card" style="text-align: center; padding: 3rem 1.5rem;">
+      <h1 style="font-size: 2.5rem;">Vida Natural</h1>
+      <p style="margin: 1.5rem 0; opacity: 0.8; line-height: 1.6;">Transforme seu corpo e mente com a melhor tecnologia de acompanhamento fit.</p>
+      <button id="btnIniciar" class="btn-action" style="font-size: 1.1rem; padding: 18px;">COMEÇAR JORNADA ⚡</button>
     </div>
   </div>
 
-  <!-- TELA DE QUESTIONÁRIO -->
   <div id="telaQuestionario" class="screen">
     <div class="card">
-      <h2>📋 Vamos te conhecer melhor</h2>
-      <p>Suas respostas vão personalizar sua experiência</p>
-      
-      <label>🎯 Qual seu objetivo principal?</label>
+      <h2>📊 Seu Perfil</h2>
+      <label>Meta Principal</label>
       <select id="objetivoUser">
-        <option value="emagrecer">Emagrecer / Perder peso</option>
-        <option value="massa">Ganhar massa muscular</option>
-        <option value="saude">Saúde e bem-estar</option>
+        <option value="emagrecer">Perda de Gordura</option>
+        <option value="massa">Ganho de Músculo</option>
+        <option value="saude">Apenas Saúde</option>
       </select>
-
-      <label>⚖️ Seu peso atual (kg)</label>
-      <input type="number" id="pesoAtual" placeholder="Ex: 80" step="0.1">
-
-      <label>🎯 Peso desejado (kg)</label>
-      <input type="number" id="pesoDesejado" placeholder="Ex: 70" step="0.1">
-
-      <label>📅 Sua idade</label>
-      <input type="number" id="idadeUser" placeholder="Ex: 30">
-
-      <label>🏃 Nível de atividade física</label>
-      <select id="atividadeUser">
-        <option value="sedentario">Sedentário (pouco ou nenhum exercício)</option>
-        <option value="leve">Leve (1-2x por semana)</option>
-        <option value="moderado">Moderado (3-4x por semana)</option>
-        <option value="ativo">Ativo (5+ vezes por semana)</option>
-      </select>
-
-      <button id="btnSalvarPerfil" style="background: #2aff9e; color: #000; margin-top: 20px;">✅ SALVAR E COMEÇAR</button>
-    </div>
-  </div>
-
-  <!-- APP PRINCIPAL -->
-  <div id="telaHome" class="screen">
-    <h2>🥗 Vida Natural + Fit</h2>
-    
-    <!-- BANNERS DE ANÚNCIO SEPARADOS (CADA LINK NO SEU BOTÃO) -->
-    <div class="banner-container">
-      <!-- BANNER 1: MERCADO LIVRE -->
-      <a href="https://meli.la/1HuxU5v" target="_blank" rel="noopener noreferrer" class="banner-anuncio">
-        <div class="banner-icone">🛒</div>
-        <div class="banner-titulo">Mercado Livre</div>
-        <div class="banner-descricao">Ofertas incríveis para você!</div>
-      </a>
-      <!-- BANNER 2: CHOPP SHOP -->
-      <a href="https://collshp.com/carlosalbetomoura15?view=storefront" target="_blank" rel="noopener noreferrer" class="banner-anuncio">
-        <div class="banner-icone">🍻</div>
-        <div class="banner-titulo">Chopp Shop</div>
-        <div class="banner-descricao">Promoções especiais - Clique aqui!</div>
-      </a>
-    </div>
-
-    <!-- Barra de progresso de perda de peso -->
-    <div class="card">
-      <h3>📊 Seu Progresso de Peso</h3>
-      <div class="progress-peso">
-        <div class="progress-peso-fill" id="barraPesoFill">0%</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div><label>Peso (kg)</label><input type="number" id="pesoAtual"></div>
+        <div><label>Meta (kg)</label><input type="number" id="pesoDesejado"></div>
       </div>
-      <p id="textoProgressoPeso"></p>
-      <p>🏆 <span id="xpTotalDisplay">0 XP</span> acumulados</p>
-    </div>
-
-    <!-- Dica do dia -->
-    <div class="card">
-      <h3>💡 Dica do Dia</h3>
-      <p id="dicaDiaTexto" style="font-size: 1.2rem;">💧 Beba água ao acordar</p>
-      <button id="btnNovaDicaHome">🔄 Nova Dica</button>
-    </div>
-
-    <!-- Status rápido -->
-    <div class="grid-2">
-      <div class="card"><h3>🍽️ Receitas feitas</h3><p id="receitasFeitasHome">0</p></div>
-      <div class="card"><h3>💪 Treinos realizados</h3><p id="treinosFeitosHome">0</p></div>
+      <button id="btnSalvarPerfil" class="btn-action">CONFIGURAR APP ✨</button>
     </div>
   </div>
 
-  <!-- TELA RECEITAS - VERSÃO PROFISSIONAL -->
+  <div id="telaHome" class="screen">
+    <div class="card">
+      <h3 style="margin-bottom: 10px;">Status da Jornada</h3>
+      <div class="progress-peso"><div class="progress-peso-fill" id="barraPesoFill"></div></div>
+      <p id="textoProgressoPeso" style="font-size: 0.85rem; opacity: 0.7;"></p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      <div class="card" style="text-align:center">
+        <small style="opacity:0.6">CONQUISTAS</small>
+        <h2 id="xpTotalDisplay" style="font-size: 2rem;">0</h2>
+        <small>XP TOTAL</small>
+      </div>
+      <div class="card" style="text-align:center">
+        <small style="opacity:0.6">ATIVIDADE</small>
+        <h2 id="treinosFeitosHome" style="font-size: 2rem;">0</h2>
+        <small>TREINOS</small>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>💡 Mindset de Hoje</h3>
+      <p id="dicaDiaTexto" style="margin-top: 10px; font-style: italic; color: var(--primary);"></p>
+    </div>
+  </div>
+
   <div id="telaReceitas" class="screen">
-    <h2>🍲 Receitas Saudáveis</h2>
-    <div id="receitasContainer"></div>
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-      <button id="btnProximaReceita">📖 Próxima Receita</button>
-      <button id="btnFizReceitaPrincipal">✔ Fiz essa receita (+10 XP)</button>
+    <h2>🍲 Nutrição Gourmet Fit</h2>
+    <div id="receitaExibicao">
+      </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1rem;">
+      <button id="btnProximaReceita">OUTRA OPÇÃO</button>
+      <button id="btnFizReceitaPrincipal" style="border-color: var(--primary);">REGISTRAR +10XP</button>
     </div>
   </div>
 
-  <!-- TELA EXERCÍCIOS -->
   <div id="telaExercicios" class="screen">
-    <h2>💪 Treinos para Emagrecer</h2>
-    <div class="card">
-      <iframe id="videoExercicio" width="100%" height="200" src="https://www.youtube.com/embed/FVlmo3uS3WQ" frameborder="0" allowfullscreen style="border-radius: 1rem;"></iframe>
-      <button id="btnProximoVideo">🔄 Próximo Treino</button>
-      <button id="btnFizTreinoPrincipal">✔ Fiz esse treino (+10 XP)</button>
+    <h2>💪 Studio Vida Natural</h2>
+    <div class="card" style="padding: 10px;">
+      <iframe id="videoExercicio" width="100%" height="250" src="" frameborder="0" allowfullscreen style="border-radius: 1rem; margin-bottom: 10px;"></iframe>
+      <button id="btnProximoVideo" style="width: 100%;">MUDAR TREINO</button>
     </div>
-    <div class="card">
-      <h3>🔥 Dica de Exercício</h3>
-      <p id="dicaExercicioTexto">🏃 Comece com 10 minutos de caminhada</p>
-      <button id="btnNovaDicaExercicio">🔄 Nova Dica</button>
-    </div>
+    <button id="btnFizTreinoPrincipal" class="btn-action">CONCLUÍDO! +15XP</button>
   </div>
 
-  <!-- TELA CHAT IA -->
   <div id="telaChat" class="screen">
-    <h2>🤖 Assistente IA Personalizado</h2>
-    <div class="chat-box" id="chatBox"></div>
-    <input type="text" id="perguntaChat" placeholder="Digite sua dúvida sobre dieta, exercícios, receitas...">
-    <button id="btnEnviarChat">Enviar pergunta</button>
+    <h2>🤖 Coach IA</h2>
+    <div class="chat-box" id="chatBox" style="height: 400px; background: rgba(0,0,0,0.3); border-radius: 1rem; padding: 15px; overflow-y: auto; margin: 15px 0;"></div>
+    <div style="display: flex; gap: 10px;">
+      <input type="text" id="perguntaChat" placeholder="Dúvida sobre dieta ou treino?" style="margin: 0;">
+      <button id="btnEnviarChat" style="background: var(--primary); color: #000;">OK</button>
+    </div>
   </div>
 
-  <!-- BOTÃO APOIO -->
-  <div class="card" style="text-align: center;">
-    <a href="https://mpago.la/1VsHL4n" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-      <button class="btn-doacao" style="width: 100%;">💚 APOIAR PROJETO VIDA NATURAL 💚</button>
+  <div class="card" style="text-align: center; border-color: #ff8c00;">
+    <p style="font-size: 0.9rem; margin-bottom: 10px;">Mantenha o projeto vivo!</p>
+    <a href="https://mpago.la/1VsHL4n" target="_blank" style="text-decoration: none; width: 100%;">
+      <button style="background: linear-gradient(45deg, #ff8c00, #ff5e00); border:none; width: 100%; color:#fff;">💖 APOIAR COM MERCADO PAGO</button>
     </a>
   </div>
 
-  <footer>🌱 Vida Natural + Fit — alimentação, treinos e IA. Seus dados ficam salvos no navegador.</footer>
+  <footer style="text-align: center; padding: 20px; font-size: 0.7rem; opacity: 0.4;">
+    © 2024 Vida Natural + Fit — Versão 2.0 Pro
+  </footer>
 </div>
 
-<!-- MENU INFERIOR -->
 <div class="nav" id="menuNav" style="display: none;">
-  <button onclick="trocarTelaApp('home')">🏠 Home</button>
-  <button onclick="trocarTelaApp('receitas')">🍲 Receitas</button>
-  <button onclick="trocarTelaApp('exercicios')">💪 Treinos</button>
-  <button onclick="trocarTelaApp('chat')">🤖 IA</button>
+  <button onclick="trocarTelaApp('home')" id="nav-home">🏠<br>Home</button>
+  <button onclick="trocarTelaApp('receitas')" id="nav-receitas">🍲<br>Dieta</button>
+  <button onclick="trocarTelaApp('exercicios')" id="nav-exercicios">💪<br>Treino</button>
+  <button onclick="trocarTelaApp('chat')" id="nav-chat">🤖<br>Coach</button>
 </div>
 
 <script>
-  // ================= DADOS DO USUÁRIO =================
-  let perfil = {
-    objetivo: "emagrecer",
-    pesoAtual: 0,
-    pesoDesejado: 0,
-    idade: 0,
-    atividade: "moderado"
-  };
+  let perfil = { objetivo: "emagrecer", pesoAtual: 0, pesoDesejado: 0 };
+  let xp = 0, receitasFeitas = 0, treinosFeitos = 0;
 
-  let xp = 0;
-  let receitasFeitas = 0;
-  let treinosFeitos = 0;
+  // BANCO DE DADOS DE RECEITAS DETALHADAS
+  const receitasPremium = [
+    {
+      nome: "Salmão com Crosta de Ervas",
+      img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80",
+      tempo: "25 min",
+      cal: "320 kcal",
+      dif: "Médio",
+      ingredientes: ["Filé de salmão", "Alecrim e Tomilho", "Azeite de Oliva", "Aspargos frescos"],
+      preparo: "Tempere o salmão com as ervas e azeite. Leve ao forno a 200°C por 15-20 minutos junto com os aspargos."
+    },
+    {
+      nome: "Bowl de Quinoa Energético",
+      img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
+      tempo: "15 min",
+      cal: "410 kcal",
+      dif: "Fácil",
+      ingredientes: ["1 xícara de Quinoa cozida", "Abacate fatiado", "Grão de bico", "Folhas de espinafre"],
+      preparo: "Misture a quinoa com o espinafre. Adicione o abacate e o grão de bico por cima. Tempere com limão."
+    },
+    {
+      nome: "Panqueca de Banana Proteica",
+      img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=600&q=80",
+      tempo: "10 min",
+      cal: "280 kcal",
+      dif: "Fácil",
+      ingredientes: ["1 Banana madura", "2 Ovos", "1 scoop de Whey (opcional)", "Canela"],
+      preparo: "Amasse a banana e misture com os ovos. Frite em frigideira antiaderente pequenas porções por 2 min cada lado."
+    }
+  ];
 
-  // Carregar dados salvos
+  const videosTreino = ["FVlmo3uS3WQ", "6T6FvKQFnjw", "ml6cT4AZdqI"];
+
   function carregarDados() {
     const saved = localStorage.getItem("vidaNaturalPerfil");
-    if (saved) {
-      perfil = JSON.parse(saved);
-      document.getElementById("pesoAtual").value = perfil.pesoAtual;
-      document.getElementById("pesoDesejado").value = perfil.pesoDesejado;
-      document.getElementById("idadeUser").value = perfil.idade;
-      document.getElementById("objetivoUser").value = perfil.objetivo;
-      document.getElementById("atividadeUser").value = perfil.atividade;
-    }
+    if (saved) perfil = JSON.parse(saved);
     xp = parseInt(localStorage.getItem("xpTotal")) || 0;
-    receitasFeitas = parseInt(localStorage.getItem("receitasFeitasTotal")) || 0;
     treinosFeitos = parseInt(localStorage.getItem("treinosFeitosTotal")) || 0;
-  }
-
-  function salvarPerfil() {
-    perfil.objetivo = document.getElementById("objetivoUser").value;
-    perfil.pesoAtual = parseFloat(document.getElementById("pesoAtual").value) || 0;
-    perfil.pesoDesejado = parseFloat(document.getElementById("pesoDesejado").value) || 0;
-    perfil.idade = parseInt(document.getElementById("idadeUser").value) || 0;
-    perfil.atividade = document.getElementById("atividadeUser").value;
-    localStorage.setItem("vidaNaturalPerfil", JSON.stringify(perfil));
-    atualizarBarraPeso();
+    atualizarInterface();
   }
 
   function atualizarBarraPeso() {
-    if (perfil.pesoAtual > 0 && perfil.pesoDesejado > 0 && perfil.pesoAtual > perfil.pesoDesejado) {
-      let totalPerder = perfil.pesoAtual - perfil.pesoDesejado;
-      let percentual = 0;
-      document.getElementById("barraPesoFill").style.width = percentual + "%";
-      document.getElementById("barraPesoFill").innerText = percentual + "%";
-      document.getElementById("textoProgressoPeso").innerHTML = `🎯 Meta: perder ${totalPerder.toFixed(1)} kg. Cada hábito saudável ajuda!`;
-    } else if (perfil.pesoAtual > 0 && perfil.pesoDesejado > 0 && perfil.pesoAtual < perfil.pesoDesejado) {
-      document.getElementById("textoProgressoPeso").innerHTML = `💪 Meta: ganhar ${(perfil.pesoDesejado - perfil.pesoAtual).toFixed(1)} kg!`;
-      document.getElementById("barraPesoFill").style.width = "0%";
-      document.getElementById("barraPesoFill").innerText = "0%";
-    } else {
-      document.getElementById("textoProgressoPeso").innerHTML = "Defina seu peso atual e desejado no perfil.";
+    const barra = document.getElementById("barraPesoFill");
+    const txt = document.getElementById("textoProgressoPeso");
+    if (perfil.pesoAtual > 0 && perfil.pesoDesejado > 0) {
+      let dif = Math.abs(perfil.pesoAtual - perfil.pesoDesejado);
+      barra.style.width = "45%"; // Valor estético inicial
+      txt.innerText = `Faltam ${dif.toFixed(1)}kg para sua meta de ${perfil.pesoDesejado}kg!`;
     }
-    atualizarInterface();
   }
 
-  function atualizarInterface() {
-    document.getElementById("xpTotalDisplay").innerText = xp;
-    document.getElementById("receitasFeitasHome").innerText = receitasFeitas;
-    document.getElementById("treinosFeitosHome").innerText = treinosFeitos;
-    localStorage.setItem("xpTotal", xp);
-    localStorage.setItem("receitasFeitasTotal", receitasFeitas);
-    localStorage.setItem("treinosFeitosTotal", treinosFeitos);
-  }
-
-  function adicionarXP(valor, acao) {
-    xp += valor;
-    atualizarInterface();
-    const toast = document.createElement("div");
-    toast.innerText = `+${valor} XP! 🎉 ${acao}`;
-    toast.style.cssText = "position:fixed; bottom:80px; left:20px; background:#2aff9e; color:#000; padding:8px 16px; border-radius:30px; font-weight:bold; z-index:1000;";
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2000);
-  }
-
-  // ================= DICAS DIÁRIAS =================
-  const dicas = ["💧 Beba 2L de água por dia", "🥗 Coma salada antes do prato principal", "🚫 Evite açúcar após as 18h", "🍽️ Mastigue devagar", "🌙 Durma 7-8h", "🏃 Suba escadas", "🥑 Adicione abacate às refeições"];
-  function dicaDoDia() {
-    let dia = new Date().getDay();
-    document.getElementById("dicaDiaTexto").innerText = dicas[dia % dicas.length];
-  }
-  function novaDicaRandom() {
-    let random = Math.floor(Math.random() * dicas.length);
-    document.getElementById("dicaDiaTexto").innerText = dicas[random];
-  }
-
-  // ================= RECEITAS - VERSÃO PROFISSIONAL =================
-  const receitas = [
-    { nome: "🥑 Smoothie Detox", ingredientes: "1 couve, 1 maçã verde, 1 pedaço de gengibre, 200ml água de coco", modo: "Bata todos os ingredientes no liquidificador por 1 minuto. Sirva gelado.", calorias: "~120 kcal", tempo: "5 min" },
-    { nome: "🍳 Omelete Fit", ingredientes: "2 ovos, espinafre fresco, tomate cereja, orégano, azeite", modo: "Bata os ovos, refogue o espinafre, adicione os ovos e tomate. Cozinhe em fogo baixo.", calorias: "~250 kcal", tempo: "10 min" },
-    { nome: "🥗 Salada Power", ingredientes: "Rúcula, frango grelhado desfiado, castanhas, limão, azeite", modo: "Misture todos os ingredientes em uma tigela. Tempere com limão e azeite.", calorias: "~320 kcal", tempo: "15 min" },
-    { nome: "🍌 Panqueca Fit", ingredientes: "1 banana amassada, 2 ovos, 3 colheres de aveia, canela", modo: "Misture tudo até ficar homogêneo. Frite em frigideira antiaderente.", calorias: "~280 kcal", tempo: "10 min" },
-    { nome: "🥣 Tigela de Açaí", ingredientes: "Polpa de açaí, banana, granola sem açúcar, morangos", modo: "Bata o açaí com um pouco de água. Monte a tigela com as frutas e granola.", calorias: "~200 kcal", tempo: "5 min" }
-  ];
-  let receitaAtual = receitas[0];
-  function renderizarReceitas() {
-    const container = document.getElementById("receitasContainer");
-    container.innerHTML = `
-      <div class="receita-card">
-        <div class="receita-nome">
-          ${receitaAtual.nome}
-          <span class="badge-receita">🔥 ${receitaAtual.calorias}</span>
-          <span class="badge-receita">⏱️ ${receitaAtual.tempo}</span>
+  function renderReceita() {
+    const r = receitasPremium[Math.floor(Math.random() * receitasPremium.length)];
+    document.getElementById("receitaExibicao").innerHTML = `
+      <div class="card" style="padding: 0; overflow: hidden;">
+        <div class="recipe-header" style="background-image: url('${r.img}')">
+          <span class="recipe-badge">${r.dif}</span>
         </div>
-        <div class="receita-ingredientes">
-          <strong>🥕 Ingredientes:</strong><br>
-          ${receitaAtual.ingredientes}
-        </div>
-        <div class="receita-modo">
-          <strong>🍳 Modo de preparo:</strong><br>
-          ${receitaAtual.modo}
+        <div style="padding: 1.5rem">
+          <h3>${r.nome}</h3>
+          <div class="recipe-meta">
+            <span>⏱️ ${r.tempo}</span>
+            <span>🔥 ${r.cal}</span>
+            <span>🥗 Saudável</span>
+          </div>
+          <h4>Ingredientes:</h4>
+          <ul class="ingredients-list">
+            ${r.ingredientes.map(i => `<li>${i}</li>`).join('')}
+          </ul>
+          <h4>Modo de Preparo:</h4>
+          <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px; line-height: 1.5">${r.preparo}</p>
         </div>
       </div>
     `;
   }
-  function proximaReceita() {
-    receitaAtual = receitas[Math.floor(Math.random() * receitas.length)];
-    renderizarReceitas();
-  }
-  function fazerReceita() {
-    adicionarXP(10, "receita feita");
-    receitasFeitas++;
-    atualizarInterface();
-    alert(`🍲 Ótimo! Você preparou ${receitaAtual.nome} (${receitaAtual.calorias})`);
-  }
 
-  // ================= EXERCÍCIOS =================
-  const videos = ["https://www.youtube.com/embed/FVlmo3uS3WQ"];
-  let videoIndex = 0;
-  function trocarVideo() { videoIndex = (videoIndex + 1) % videos.length; document.getElementById("videoExercicio").src = videos[videoIndex]; }
-  function fazerTreino() { adicionarXP(10, "treino concluído"); treinosFeitos++; atualizarInterface(); alert("💪 Treino registrado! Continue assim."); }
-
-  const dicasExercicio = ["🏃 10 min caminhada", "🧘 Alongue 5 min", "💪 Agachamento 3x12", "🚴 Pular corda 5 min"];
-  function novaDicaExercicio() { document.getElementById("dicaExercicioTexto").innerText = dicasExercicio[Math.floor(Math.random() * dicasExercicio.length)]; }
-
-  // ================= CHAT IA COM MEMÓRIA =================
-  function responderIA(pergunta) {
-    const p = pergunta.toLowerCase();
-    if (p.includes("peso") || p.includes("emagrecer")) {
-      if (perfil.pesoAtual && perfil.pesoDesejado)
-        return `Você quer sair de ${perfil.pesoAtual}kg para ${perfil.pesoDesejado}kg. Foco em déficit calórico e treino regular!`;
-      return "Para emagrecer, combine alimentação saudável e exercícios diários.";
-    }
-    if (p.includes("receita")) return `Experimente: ${receitas[0].nome} - ${receitas[0].ingredientes}`;
-    if (p.includes("treino")) return "Tente HIIT 20min ou caminhada rápida 30min.";
-    return "Coma alimentos naturais, beba água e se mova diariamente. Posso ajudar com dúvidas específicas!";
-  }
-
-  function enviarPergunta() {
-    const input = document.getElementById("perguntaChat");
-    const chat = document.getElementById("chatBox");
-    if (!input.value.trim()) return;
-    chat.innerHTML += `<p><strong>Você:</strong> ${input.value}</p>`;
-    const pergunta = input.value;
-    input.value = "";
-    chat.innerHTML += `<p id="digitando"><em>IA pensando...</em></p>`;
-    setTimeout(() => {
-      document.getElementById("digitando")?.remove();
-      const resposta = responderIA(pergunta);
-      chat.innerHTML += `<p><strong>🤖 IA:</strong> ${resposta}</p>`;
-      chat.scrollTop = chat.scrollHeight;
-    }, 500);
-  }
-
-  // ================= NAVEGAÇÃO =================
   function trocarTelaApp(tela) {
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     document.getElementById(`tela${tela.charAt(0).toUpperCase() + tela.slice(1)}`).classList.add("active");
+    window.scrollTo(0,0);
   }
 
-  function mostrarMenu() { document.getElementById("menuNav").style.display = "flex"; }
-  function esconderMenu() { document.getElementById("menuNav").style.display = "none"; }
-
-  // Fluxo inicial
+  // Eventos
   document.getElementById("btnIniciar").onclick = () => {
-    document.getElementById("telaBoasVindas").classList.remove("active");
-    document.getElementById("telaQuestionario").classList.add("active");
-    esconderMenu();
+    trocarTelaApp('questionario');
   };
 
   document.getElementById("btnSalvarPerfil").onclick = () => {
-    salvarPerfil();
-    document.getElementById("telaQuestionario").classList.remove("active");
-    document.getElementById("telaHome").classList.add("active");
-    mostrarMenu();
+    perfil.pesoAtual = document.getElementById("pesoAtual").value;
+    perfil.pesoDesejado = document.getElementById("pesoDesejado").value;
+    localStorage.setItem("vidaNaturalPerfil", JSON.stringify(perfil));
+    document.getElementById("menuNav").style.display = "flex";
+    trocarTelaApp('home');
     dicaDoDia();
-    renderizarReceitas();
+    renderReceita();
     atualizarBarraPeso();
   };
 
-  // Eventos
-  document.getElementById("btnNovaDicaHome").onclick = novaDicaRandom;
-  document.getElementById("btnProximaReceita").onclick = proximaReceita;
-  document.getElementById("btnFizReceitaPrincipal").onclick = fazerReceita;
-  document.getElementById("btnProximoVideo").onclick = trocarVideo;
-  document.getElementById("btnFizTreinoPrincipal").onclick = fazerTreino;
-  document.getElementById("btnNovaDicaExercicio").onclick = novaDicaExercicio;
-  document.getElementById("btnEnviarChat").onclick = enviarPergunta;
-  document.getElementById("perguntaChat").addEventListener("keypress", (e) => { if(e.key === "Enter") enviarPergunta(); });
+  function dicaDoDia() {
+    const dicas = ["A consistência vence a intensidade.", "Beber água acelera o metabolismo em 25%.", "O sono é seu maior aliado anabólico.", "Sua única competição é quem você era ontem."];
+    document.getElementById("dicaDiaTexto").innerText = dicas[Math.floor(Math.random()*dicas.length)];
+  }
 
+  document.getElementById("btnProximaReceita").onclick = renderReceita;
+  
+  document.getElementById("btnFizReceitaPrincipal").onclick = () => {
+    xp += 10; atualizarInterface(); alert("Receita registrada! +10 XP conquistados.");
+  };
+
+  document.getElementById("btnProximoVideo").onclick = () => {
+    const id = videosTreino[Math.floor(Math.random() * videosTreino.length)];
+    document.getElementById("videoExercicio").src = `https://www.youtube.com/embed/${id}`;
+  };
+
+  document.getElementById("btnFizTreinoPrincipal").onclick = () => {
+    xp += 15; treinosFeitos++; atualizarInterface(); alert("Treino Finalizado! Você está mais forte hoje.");
+  };
+
+  function atualizarInterface() {
+    document.getElementById("xpTotalDisplay").innerText = xp;
+    document.getElementById("treinosFeitosHome").innerText = treinosFeitos;
+    localStorage.setItem("xpTotal", xp);
+    localStorage.setItem("treinosFeitosTotal", treinosFeitos);
+  }
+
+  // Chat
+  document.getElementById("btnEnviarChat").onclick = () => {
+    const input = document.getElementById("perguntaChat");
+    const chat = document.getElementById("chatBox");
+    if(!input.value) return;
+    chat.innerHTML += `<p style="margin-bottom:10px"><b>Você:</b> ${input.value}</p>`;
+    const p = input.value.toLowerCase();
+    input.value = "";
+    setTimeout(() => {
+      let r = "Interessante! Recomendo focar em proteínas e vegetais verdes para otimizar seus resultados.";
+      if(p.includes("peso")) r = "Para perder peso, tente manter um déficit calórico de 300kcal por dia.";
+      chat.innerHTML += `<p style="color:var(--primary); margin-bottom:10px"><b>Coach:</b> ${r}</p>`;
+      chat.scrollTop = chat.scrollHeight;
+    }, 800);
+  };
+
+  // Init
   carregarDados();
   if (localStorage.getItem("vidaNaturalPerfil")) {
-    document.getElementById("telaBoasVindas").classList.remove("active");
-    document.getElementById("telaHome").classList.add("active");
-    mostrarMenu();
+    document.getElementById("menuNav").style.display = "flex";
+    trocarTelaApp('home');
     dicaDoDia();
-    renderizarReceitas();
+    renderReceita();
     atualizarBarraPeso();
+    document.getElementById("videoExercicio").src = `https://www.youtube.com/embed/${videosTreino[0]}`;
   }
 </script>
 </body>
